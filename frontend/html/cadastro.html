@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StudyMind · Cadastro</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Mesmo visual da tela de login -->
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <!-- Parte esquerda -->
+        <section class="left-side">
+            <h1 class="titulo"><i class="fa-solid fa-graduation-cap"></i>StudyMind</h1>
+            <p class="sub">Seu estudo mais</p>
+            <p class="destaque">inteligente</p>
+            <img
+                src="/imagem.png"
+                class="imagem"
+                alt="Ilustração de estudos"
+            >
+
+            <div class="beneficios">
+                <div class="beneficio">
+                    <i class="fa-solid fa-bullseye"></i>
+                    <span>Defina suas<br>metas</span>
+                </div>
+
+                <div class="separador"></div>
+
+                <div class="beneficio">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Acompanhe seu<br>progresso</span>
+                </div>
+
+                <div class="separador"></div>
+
+                <div class="beneficio">
+                    <i class="fa-solid fa-star"></i>
+                    <span>Transforme seus<br>sonhos</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Parte direita -->
+        <section class="right-side">
+            <form id="cadastroForm" class="login-box">
+                <h1>Cadastre-se</h1>
+
+                <div class="campo">
+                    <label for="nome">Seu nome:</label>
+                    <input
+                        type="text"
+                        id="nome"
+                        maxlength="100"
+                        autocomplete="given-name"
+                        placeholder="Como você quer ser chamado(a)?"
+                        required
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="email">Seu email:</label>
+                    <input
+                        type="email"
+                        id="email"
+                        maxlength="100"
+                        autocomplete="email"
+                        placeholder="Digite seu email"
+                        required
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="password">Sua senha:</label>
+                    <input
+                        type="password"
+                        id="password"
+                        minlength="6"
+                        autocomplete="new-password"
+                        placeholder="Pelo menos 6 caracteres"
+                        required
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="confirmPassword">Confirme sua senha:</label>
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        minlength="6"
+                        autocomplete="new-password"
+                        placeholder="Digite a senha de novo"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="btn btn-principal" id="botaoCadastrar">
+                    <span>Criar conta</span>
+                    <i class="fa-solid fa-user-plus"></i>
+                </button>
+
+                <div class="divisor"><span>ou</span></div>
+
+                <a href="/login/google?modo=cadastro" class="btn btn-google">
+                    <i class="fa-brands fa-google"></i>
+                    <span>Cadastrar com Google</span>
+                </a>
+
+                <p id="message" class="mensagem" role="alert"></p>
+                <p class="cadastro-link">Já tem uma conta? <a href="/">Faça login</a></p>
+            </form>
+        </section>
+    </div>
+
+    <script src="/js/cadastro.js"></script>
+</body>
+</html>

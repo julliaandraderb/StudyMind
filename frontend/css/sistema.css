@@ -1,0 +1,1840 @@
+/* ===============================================
+   RESET E CONFIGURAÇÕES GERAIS
+   =============================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f5f0fa;
+    color: #2d1b4e;
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ===============================================
+   SIDEBAR - MENU LATERAL ROXO
+   =============================================== */
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    background: linear-gradient(180deg, #8e5cc7, #6f42a8);
+    color: white;
+    padding: 25px 18px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5px 0 20px rgba(0, 0, 0, 0.08);
+    overflow-y: auto;
+}
+
+/* ---- LOGO ---- */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 23px;
+    font-weight: 700;
+    margin-bottom: 35px;
+}
+
+.logo i {
+    font-size: 27px;
+    color: #e0aaff;
+}
+
+/* ---- MENU NAVEGAÇÃO ---- */
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 13px 15px;
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 14px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.menu a:hover,
+.menu a.ativo {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.menu a i {
+    width: 20px;
+    text-align: center;
+}
+
+/* ---- TAREFAS NA SIDEBAR ---- */
+.tarefas {
+    margin-top: auto;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    padding: 17px;
+    backdrop-filter: blur(10px);
+}
+
+.tarefas-titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.tarefas-titulo i {
+    color: #e0aaff;
+}
+
+.tarefa {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 12px;
+    font-size: 12px;
+}
+
+.tarefa input {
+    accent-color: #e0aaff;
+    cursor: pointer;
+}
+
+.tarefa input:checked + label {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.tarefa label {
+    cursor: pointer;
+}
+
+.remover-tarefa {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12px;
+    cursor: pointer;
+    padding: 2px 4px;
+    opacity: 0;
+    transition: 0.2s;
+}
+
+.tarefa:hover .remover-tarefa,
+.remover-tarefa:focus {
+    opacity: 1;
+}
+
+.remover-tarefa:hover {
+    color: #ffb3b3;
+}
+
+.tarefa .tarefa-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    color: #2d1b4e;
+    outline: none;
+    cursor: text;
+}
+
+.nova-tarefa {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    background: white;
+    color: #6f42a8;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.nova-tarefa:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* ===============================================
+   CONTEÚDO PRINCIPAL
+   =============================================== */
+.main-content {
+    flex: 1;
+    margin-left: 260px;
+    padding: 32px 40px;
+    min-height: 100vh;
+    background: #f5f0fa;
+}
+
+/* ---- SEÇÕES (ocultas por padrão) ---- */
+.secao {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.secao.ativa {
+    display: block;
+}
+
+/* Animação de entrada suave */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===============================================
+   DASHBOARD - PÁGINA INICIAL
+   =============================================== */
+
+/* ---- TOPO DO DASHBOARD ---- */
+.topo-dash {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 28px;
+}
+
+.topo-dash .saudacao h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2d1b4e;
+}
+
+.topo-dash .saudacao h1 span {
+    color: #8e5cc7;
+}
+
+.topo-dash .saudacao p {
+    color: #6b5a7a;
+    font-size: 15px;
+    margin-top: 2px;
+}
+
+.topo-dash .saudacao p strong {
+    color: #9d4edd;
+}
+
+.topo-dash .data {
+    color: #6b5a7a;
+    font-size: 14px;
+    background: white;
+    padding: 8px 18px;
+    border-radius: 30px;
+    border: 1px solid #e8e0f0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.topo-dash .data i {
+    margin-right: 8px;
+    color: #8e5cc7;
+}
+
+/* ---- CARDS DE ESTATÍSTICAS ---- */
+.cards-dash {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.card-dash {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: 0.2s;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.card-dash:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card-dash-icon {
+    font-size: 28px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f0fa;
+    border-radius: 12px;
+}
+
+.card-dash-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-dash-valor {
+    font-size: 26px;
+    font-weight: 700;
+    color: #2d1b4e;
+}
+
+.card-dash-label {
+    font-size: 13px;
+    color: #6b5a7a;
+}
+
+.card-dash-trend {
+    font-size: 12px;
+    color: #9b8aab;
+}
+
+.card-dash-trend.positivo {
+    color: #7b2cbf;
+    font-weight: 500;
+}
+
+/* ---- PROGRESSO POR MATÉRIA (barras) ---- */
+.row-dash {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 28px;
+}
+
+
+/* ---- PROGRESSO POR MATÉRIA ---- */
+.col-progresso {
+    background: white;
+    padding: 24px;
+    border: 1px solid #e8e0f0;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(232, 14, 14, 0.04);
+}
+
+.barra-materia {
+    display: grid;
+    grid-template-columns: 1fr 45px;
+    align-items: center;
+    gap: 8px 12px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #2d1b4e;
+}
+
+.barra-materia span:last-child {
+    color: #8e5cc7;
+    font-weight: 600;
+    background: #eee3fa;
+    padding: 4px 10px;
+    border-radius: 8px;
+    width: fit-content;
+}
+
+.barra-bg {
+    grid-column: 1;
+    grid-row: 2;
+    width: 100%;
+    height: 9px;
+    background: #e8e0f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.barra-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.8s ease;
+}
+
+.barra-pct {
+    grid-column: 2;
+    grid-row: 2;
+    font-weight: 600;
+    font-size: 12px;
+    text-align: right;
+    color: #6f42a8;
+}
+
+
+/* ---- CÍRCULO DE DESEMPENHO ---- */
+.col-desempenho {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.circulo-desempenho {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin-bottom: 16px;
+}
+
+.circulo-desempenho svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.circulo-desempenho .circulo-texto {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.circulo-desempenho .circulo-texto strong {
+    display: block;
+    font-size: 28px;
+    color: #2d1b4e;
+    font-weight: 700;
+}
+
+.circulo-desempenho .circulo-texto span {
+    font-size: 12px;
+    color: #6b5a7a;
+}
+
+/* ---- BOTÕES REVISAR ---- */
+.botoes-revisar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.btn-revisar {
+    background: transparent;
+    border: 1px solid #8e5cc7;
+    border-radius: 30px;
+    padding: 8px 18px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #6f42a8;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-revisar:hover {
+    background: #8e5cc7;
+    color: white;
+}
+
+.btn-revisar span {
+    font-weight: 700;
+}
+
+.meta-semanal {
+    font-size: 13px;
+    color: #7b2cbf;
+    margin-top: 4px;
+}
+
+.topico-item {
+    background: white;
+    border: 1px solid #e8e0f0;
+    border-radius: 12px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.topico-item span:first-child {
+    font-weight: 600;
+    color: #2d1b4e;
+}
+
+.topico-materia {
+    font-size: 12px;
+    color: white;
+    background: #8e5cc7;
+    padding: 2px 12px;
+    border-radius: 20px;
+}
+
+/* ---- REVISAR HOJE ---- */
+/* Painel em destaque com as matérias que tiveram erro desde ontem */
+.revisar-painel {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 28px;
+    padding: 24px;
+    border: 1px solid #e2d3f5;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f2ff 100%);
+    box-shadow: 0 6px 24px rgba(111, 66, 168, 0.1);
+}
+
+/* Faixa em degradê no topo do painel */
+.revisar-painel::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 4px;
+    background: linear-gradient(90deg, #c77dff, #9d4edd, #b5179e);
+}
+
+.revisar-cabecalho {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.revisar-icone {
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #9d4edd, #6f42a8);
+    color: white;
+    font-size: 20px;
+    box-shadow: 0 6px 16px rgba(111, 66, 168, 0.3);
+}
+
+/* Quando há matérias para revisar, o ícone pulsa de leve para chamar atenção */
+.revisar-painel:has(.revisar-contador:not([hidden])) .revisar-icone {
+    animation: revisar-pulso 2.4s ease-out infinite;
+}
+
+@keyframes revisar-pulso {
+    0% { box-shadow: 0 6px 16px rgba(111, 66, 168, 0.3), 0 0 0 0 rgba(157, 78, 221, 0.45); }
+    70% { box-shadow: 0 6px 16px rgba(111, 66, 168, 0.3), 0 0 0 12px rgba(157, 78, 221, 0); }
+    100% { box-shadow: 0 6px 16px rgba(111, 66, 168, 0.3), 0 0 0 0 rgba(157, 78, 221, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .revisar-painel:has(.revisar-contador:not([hidden])) .revisar-icone {
+        animation: none;
+    }
+}
+
+.revisar-titulo {
+    flex: 1;
+    min-width: 0;
+}
+
+.revisar-titulo h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--texto, #2d1b4e);
+    line-height: 1.2;
+}
+
+.revisar-titulo p {
+    font-size: 13px;
+    color: var(--texto-suave, #6b5a7a);
+    margin-top: 2px;
+}
+
+.revisar-contador {
+    flex-shrink: 0;
+    padding: 6px 14px;
+    border-radius: 30px;
+    background: linear-gradient(90deg, #b5179e, #9d4edd);
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(181, 23, 158, 0.25);
+}
+
+.revisar-grade {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+/* ---- Cartão de cada matéria ---- */
+.revisar-card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 18px;
+    border: 1px solid #e8e0f0;
+    border-top: 4px solid var(--cor-materia, #8e5cc7);
+    border-radius: 16px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(45, 27, 78, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.revisar-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 26px rgba(111, 66, 168, 0.16);
+}
+
+.revisar-card-topo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.revisar-card-icone {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    font-size: 18px;
+    color: var(--cor-materia, #8e5cc7);
+    background: color-mix(in srgb, var(--cor-materia, #8e5cc7) 14%, white);
+}
+
+.revisar-card-nome {
+    display: block;
+    font-size: 17px;
+    font-weight: 700;
+    color: #2d1b4e;
+    line-height: 1.25;
+}
+
+.revisar-card-area {
+    display: block;
+    font-size: 12px;
+    color: #6b5a7a;
+}
+
+.revisar-card-erros {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.revisar-card-erros li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.revisar-card-erros .erro-simulado {
+    background: rgba(157, 78, 221, 0.1);
+    color: #6f42a8;
+}
+
+.revisar-card-erros .erro-flashcard {
+    background: rgba(181, 23, 158, 0.08);
+    color: #b5179e;
+}
+
+.revisar-card-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+}
+
+.revisar-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border: 1px solid #e2d3f5;
+    border-radius: 30px;
+    background: transparent;
+    color: #6f42a8;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s, background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.revisar-btn:hover {
+    border-color: #9d4edd;
+    background: rgba(157, 78, 221, 0.08);
+}
+
+.revisar-btn-principal {
+    border-color: transparent;
+    background: linear-gradient(90deg, #9d4edd, #6f42a8);
+    color: white;
+    box-shadow: 0 4px 12px rgba(111, 66, 168, 0.28);
+}
+
+.revisar-btn-principal:hover {
+    border-color: transparent;
+    background: linear-gradient(90deg, #9d4edd, #6f42a8);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(111, 66, 168, 0.36);
+}
+
+/* ---- Nada para revisar ---- */
+.revisar-vazio {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px;
+    border: 1px dashed #d9c6f0;
+    border-radius: 14px;
+    background: rgba(157, 78, 221, 0.05);
+}
+
+.revisar-vazio > i {
+    font-size: 28px;
+    color: #9d4edd;
+}
+
+.revisar-vazio strong {
+    display: block;
+    font-size: 15px;
+    color: #2d1b4e;
+}
+
+.revisar-vazio p {
+    font-size: 13px;
+    color: #6b5a7a;
+}
+
+@media (max-width: 600px) {
+    .revisar-cabecalho {
+        flex-wrap: wrap;
+    }
+}
+
+/* ---- RECOMENDAÇÃO IA ---- */
+.recomendacao-ia {
+    background: white;
+    border: 1px solid #e8e0f0;
+    border-radius: 16px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.recomendacao-ia i {
+    font-size: 32px;
+    color: #8e5cc7;
+}
+
+.recomendacao-ia div {
+    flex: 1;
+}
+
+.recomendacao-ia div strong {
+    display: block;
+    font-size: 14px;
+    color: #2d1b4e;
+}
+
+.recomendacao-ia div p {
+    font-size: 14px;
+    color: #6b5a7a;
+}
+
+.recomendacao-ia div p strong {
+    display: inline;
+    color: #2d1b4e;
+}
+
+.btn-iniciar {
+    background: #8e5cc7;
+    border: none;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+    white-space: nowrap;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-iniciar:hover {
+    background: #6f42a8;
+    transform: scale(1.02);
+}
+
+/* ===============================================
+   CHAT COM IA
+   =============================================== */
+.chat-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.chat-header {
+    background: white;
+    border: 1px solid #e8e0f0;
+    border-radius: 16px 16px 0 0;
+    padding: 16px 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.chat-header-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.chat-header-info div strong {
+    display: block;
+    font-size: 16px;
+    color: #2d1b4e;
+}
+
+.chat-header-info div .online {
+    font-size: 12px;
+    color: #9d4edd;
+    margin-right: 8px;
+}
+
+.chat-header-info div .especialista {
+    font-size: 12px;
+    color: #6b5a7a;
+    background: #f5f0fa;
+    padding: 2px 12px;
+    border-radius: 20px;
+}
+
+.chat-mensagens {
+    padding: 20px 24px;
+    background: white;
+    border-left: 1px solid #e8e0f0;
+    border-right: 1px solid #e8e0f0;
+    min-height: 300px;
+    max-height: 55vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.msg-usuario {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.msg-usuario .msg-bubble {
+    max-width: 80%;
+    background: #8e5cc7;
+    color: white;
+    border-radius: 12px 12px 4px 12px;
+}
+
+.msg-usuario .msg-hora {
+    color: #e8dcf5;
+}
+
+.msg-texto {
+    white-space: pre-wrap;
+}
+
+/* Títulos (### ...) nas respostas da IA */
+.msg-texto .msg-titulo {
+    display: inline-block;
+    font-size: 1.05em;
+    margin-top: 4px;
+}
+
+/* Fórmulas em bloco: centralizadas e com rolagem se forem largas demais */
+.msg-texto .katex-display {
+    margin: 6px 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.msg-texto .katex {
+    white-space: normal;
+}
+
+.msg-bubble.digitando {
+    color: #9b8aab;
+    font-style: italic;
+}
+
+.msg-ia {
+    display: flex;
+    gap: 12px;
+    max-width: 80%;
+}
+
+.msg-ia i {
+    font-size: 20px;
+    color: #8e5cc7;
+    margin-top: 4px;
+}
+
+.msg-bubble {
+    background: #f5f0fa;
+    border-radius: 12px 12px 12px 4px;
+    padding: 14px 18px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #2d1b4e;
+}
+
+.msg-bubble strong {
+    color: #6f42a8;
+}
+
+.msg-hora {
+    display: block;
+    font-size: 11px;
+    color: #9b8aab;
+    margin-top: 6px;
+}
+
+.chat-sugestoes {
+    display: flex;
+    gap: 10px;
+    padding: 16px 24px;
+    background: white;
+    border-left: 1px solid #e8e0f0;
+    border-right: 1px solid #e8e0f0;
+    flex-wrap: wrap;
+}
+
+.chat-sugestoes button {
+    background: #f5f0fa;
+    border: 1px solid #e8e0f0;
+    border-radius: 30px;
+    padding: 8px 18px;
+    font-size: 13px;
+    color: #6f42a8;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: 'Poppins', sans-serif;
+}
+
+.chat-sugestoes button:hover {
+    background: #8e5cc7;
+    color: white;
+    border-color: #8e5cc7;
+}
+
+.chat-input {
+    background: white;
+    border: 1px solid #e8e0f0;
+    border-radius: 0 0 16px 16px;
+    padding: 16px 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.chat-input-perfil {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.avatar-mini {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8e5cc7, #6f42a8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 12px;
+    color: white;
+}
+
+.chat-input-perfil span {
+    font-size: 13px;
+    color: #2d1b4e;
+}
+
+.chat-input-perfil span small {
+    color: #6b5a7a;
+    margin-left: 6px;
+}
+
+.chat-input-area {
+    display: flex;
+    gap: 12px;
+}
+
+.chat-input-area input {
+    flex: 1;
+    background: #f5f0fa;
+    border: 1px solid #e8e0f0;
+    border-radius: 30px;
+    padding: 10px 18px;
+    font-size: 14px;
+    color: #2d1b4e;
+    outline: none;
+    transition: 0.2s;
+    font-family: 'Poppins', sans-serif;
+}
+
+.chat-input-area input:focus {
+    border-color: #8e5cc7;
+}
+
+.chat-input-area input::placeholder {
+    color: #9b8aab;
+}
+
+.chat-input-area button {
+    background: #8e5cc7;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 24px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.chat-input-area button:hover {
+    background: #6f42a8;
+}
+
+/* ===============================================
+   FLASHCARDS
+   =============================================== */
+.flashcards-container {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.flashcards-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.flashcards-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #2d1b4e;
+}
+
+.flashcards-header p {
+    font-size: 14px;
+    color: #6b5a7a;
+}
+
+.flashcard-placar {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.flashcard-placar span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    padding: 6px 14px;
+    border-radius: 30px;
+    background: white;
+    border: 1px solid #e8e0f0;
+}
+
+.placar-sabia {
+    color: #6f42a8;
+}
+
+.placar-revisar {
+    color: #b5179e;
+}
+
+/* ---- FILTROS POR MATÉRIA ---- */
+.flashcard-filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.filtro-fc {
+    border: 1px solid #e8e0f0;
+    background: white;
+    color: #6b5a7a;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.filtro-fc:hover {
+    border-color: #8e5cc7;
+    color: #6f42a8;
+}
+
+.filtro-fc.ativo {
+    background: #8e5cc7;
+    border-color: #8e5cc7;
+    color: white;
+}
+
+/* ---- PROGRESSO ---- */
+.flashcard-progresso {
+    height: 8px;
+    background: #e8e0f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.flashcard-progresso-barra {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #8e5cc7, #c77dff);
+    border-radius: 10px;
+    transition: width 0.4s ease;
+}
+
+.flashcard-posicao {
+    font-size: 12px;
+    color: #9b8aab;
+    margin: 8px 0 18px;
+    text-align: right;
+}
+
+/* ---- CARTÃO COM EFEITO DE VIRAR ---- */
+.flashcard-cena {
+    perspective: 1200px;
+}
+
+.flashcard-card {
+    display: grid;
+    position: relative;
+    min-height: 260px;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+    outline: none;
+}
+
+.flashcard-card.virado {
+    transform: rotateY(180deg);
+}
+
+.flashcard-card.sem-transicao {
+    transition: none;
+}
+
+/* Animação de entrada no cartão inteiro (não nas faces, para não desfazer o giro do verso) */
+.flashcard-card.entrando:not(.virado) {
+    animation: fc-entrar 0.35s ease;
+}
+
+@keyframes fc-entrar {
+    from { opacity: 0; transform: translateY(12px); }
+}
+
+.flashcard-face {
+    grid-area: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 40px 36px;
+    border-radius: 24px;
+    text-align: center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    box-shadow: 0 10px 30px rgba(111, 66, 168, 0.12);
+    transition: box-shadow 0.2s;
+}
+
+.flashcard-card:hover .flashcard-face,
+.flashcard-card:focus-visible .flashcard-face {
+    box-shadow: 0 14px 38px rgba(111, 66, 168, 0.22);
+}
+
+.flashcard-frente {
+    background: white;
+    border: 1px solid #e8e0f0;
+}
+
+.flashcard-verso {
+    background: linear-gradient(135deg, #8e5cc7, #6f42a8);
+    color: white;
+    transform: rotateY(180deg);
+}
+
+.flashcard-materia {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: #f5f0fa;
+    color: #8e5cc7;
+}
+
+.flashcard-verso .flashcard-materia {
+    background: rgba(255, 255, 255, 0.18);
+    color: white;
+}
+
+.flashcard-pergunta {
+    font-size: 22px;
+    font-weight: 600;
+    color: #2d1b4e;
+    line-height: 1.4;
+}
+
+.flashcard-dica {
+    font-size: 12px;
+    color: #9b8aab;
+}
+
+.flashcard-resposta {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.flashcard-formula {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.16);
+    padding: 8px 16px;
+    border-radius: 10px;
+}
+
+/* ---- BOTÕES DE AVALIAÇÃO ---- */
+.flashcard-avaliacao {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn-nao-sei,
+.btn-sei {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid transparent;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: 0.2s;
+}
+
+.btn-nao-sei {
+    background: #fbeaf7;
+    color: #b5179e;
+}
+
+.btn-nao-sei:hover:not(:disabled) {
+    background: #b5179e;
+    color: white;
+}
+
+.btn-sei {
+    background: #efe5fb;
+    color: #6f42a8;
+}
+
+.btn-sei:hover:not(:disabled) {
+    background: #6f42a8;
+    color: white;
+}
+
+.btn-nao-sei:disabled,
+.btn-sei:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.flashcard-avaliacao kbd {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    padding: 1px 7px;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.07);
+}
+
+/* ---- FIM DO DECK ---- */
+.flashcard-fim {
+    background: white;
+    border: 1px solid #e8e0f0;
+    border-radius: 24px;
+    padding: 48px 32px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(111, 66, 168, 0.12);
+}
+
+.flashcard-fim > i {
+    font-size: 44px;
+    color: #9d4edd;
+    margin-bottom: 12px;
+}
+
+.flashcard-fim h3 {
+    font-size: 22px;
+    color: #2d1b4e;
+    margin-bottom: 8px;
+}
+
+.flashcard-fim p {
+    color: #6b5a7a;
+    margin-bottom: 24px;
+}
+
+.flashcard-fim-botoes {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-revelar {
+    background: #8e5cc7;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-revelar:hover {
+    background: #6f42a8;
+    transform: scale(1.02);
+}
+
+.btn-secundario {
+    background: white;
+    border: 1px solid #8e5cc7;
+    color: #6f42a8;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-secundario:hover {
+    background: #f5f0fa;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+@media (max-width: 600px) {
+    .flashcards-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .flashcard-face {
+        padding: 32px 20px;
+    }
+
+    .flashcard-pergunta {
+        font-size: 18px;
+    }
+
+    .flashcard-avaliacao kbd {
+        display: none;
+    }
+}
+
+/* ===============================================
+   QUESTÕES
+   =============================================== */
+.questoes-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.questoes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.questoes-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #2d1b4e;
+}
+
+.questoes-header span {
+    font-size: 14px;
+    color: #6b5a7a;
+    background: white;
+    padding: 6px 16px;
+    border-radius: 30px;
+    border: 1px solid #e8e0f0;
+}
+
+.questao-card {
+    display: block;
+    background: white;
+    border: 1px solid #e8e0f0;
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+#questaoCard {
+    display: none;
+}
+
+.questao-contador {
+    font-size: 12px;
+    font-weight: 600;
+    color: #8e5cc7;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+.questao-enunciado {
+    white-space: pre-line;
+}
+
+.alternativa.correta {
+    background: #e8f8ef;
+    border-color: #27ae60;
+}
+
+.alternativa.errada {
+    background: #fdecea;
+    border-color: #e74c3c;
+}
+
+.questao-feedback {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.questao-feedback:empty {
+    display: none;
+}
+
+.questao-feedback.acerto {
+    color: #1e8449;
+}
+
+.questao-feedback.erro {
+    color: #c0392b;
+}
+
+.questao-resultado {
+    text-align: center;
+    color: #2d1b4e;
+    margin-bottom: 24px;
+}
+
+.questao-tags {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.tag-topico {
+    cursor: pointer;
+    border: 1px solid #ddd;
+    background: white;
+    color: #555;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+.tag-topico.ativo {
+    background: #6f42a8;
+    color: white;
+    border-color: #6f42a8;
+}
+
+.mensagem-inicial-simulado {
+    background: #ffffff;
+    border: 1px solid #e5d8f2;
+    border-radius: 20px;
+    padding: 50px 30px;
+    margin-top: 20px;
+    text-align: center;
+    min-height: 250px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.mensagem-inicial-simulado h1 {
+    color: #49366b;
+    font-size: 26px;
+    margin: 0;
+}
+
+.mensagem-inicial-simulado p {
+    color: #6b5b7b;
+    font-size: 16px;
+    margin: 0;
+}
+
+.questao-enunciado {
+    font-size: 16px;
+    color: #2d1b4e;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.questao-alternativas {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.alternativa {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border: 1px solid #e8e0f0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 14px;
+    color: #2d1b4e;
+}
+
+.alternativa:not(.correta):not(.errada):hover {
+    background: #f5f0fa;
+    border-color: #8e5cc7;
+}
+
+.alternativa input {
+    accent-color: #8e5cc7;
+    cursor: pointer;
+}
+
+.btn-responder {
+    background: #8e5cc7;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+}
+
+.btn-responder:hover {
+    background: #6f42a8;
+    transform: scale(1.01);
+}
+
+
+/* ---- DASHBOARD INTELIGENTE ---- */
+.card-dash-trend.negativo {
+    color: #b5179e;
+}
+
+/* Barrinha de progresso dentro do cartão (meta de questões / deck) */
+.card-dash-meta {
+    width: 100%;
+    max-width: 140px;
+    height: 5px;
+    margin-top: 6px;
+    border-radius: 99px;
+    background: #efe8f6;
+    overflow: hidden;
+}
+
+.card-dash-meta > div {
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #c77dff, #8e5cc7);
+    transition: width 0.6s ease;
+}
+
+/* ---- Ajustes de layout do dashboard inteligente ---- */
+
+/* Botões "Revisar": quebram de linha quando não cabem */
+.botoes-revisar {
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn-revisar {
+    white-space: nowrap;
+}
+
+/* Texto do círculo sem quebrar em várias linhas */
+.circulo-desempenho .circulo-texto span {
+    display: block;
+    white-space: nowrap;
+    line-height: 1.3;
+}
+
+/* Mensagem quando ainda não há progresso */
+#progressoMaterias {
+    color: #6b5a7a;
+    font-size: 14px;
+}
+
+
+/* ===============================================
+   TEMA ROXO — acabamento geral
+   Um único conjunto de roxos para o site inteiro.
+   =============================================== */
+:root {
+    --roxo: #8e5cc7;
+    --roxo-escuro: #6f42a8;
+    --roxo-profundo: #4a2382;
+    --roxo-vivo: #9d4edd;
+    --lilas: #c77dff;
+    --lilas-claro: #f3ecfb;
+    --borda: #e8e0f0;
+    --texto: #2d1b4e;
+    --texto-suave: #6b5a7a;
+    --cor-positiva: #7b2cbf;
+    --cor-negativa: #b5179e;
+    --sombra: 0 4px 18px rgba(111, 66, 168, 0.08);
+    --sombra-forte: 0 10px 28px rgba(111, 66, 168, 0.16);
+}
+
+body {
+    background:
+        radial-gradient(circle at 85% -10%, rgba(199, 125, 255, 0.18), transparent 45%),
+        #f6f1fc;
+    background-attachment: fixed;
+}
+
+::selection {
+    background: rgba(157, 78, 221, 0.25);
+}
+
+/* Barra de rolagem roxinha */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #cdb6ea transparent;
+}
+
+/* ---- Menu lateral ---- */
+.sidebar {
+    background: linear-gradient(180deg, #8e5cc7 0%, #6f42a8 60%, #5a189a 100%);
+    box-shadow: 6px 0 30px rgba(74, 35, 130, 0.18);
+}
+
+.menu a {
+    transition: background 0.2s, transform 0.2s;
+}
+
+.menu a:hover {
+    transform: translateX(3px);
+}
+
+/* Item ativo: fundo branco com texto roxo, bem visível */
+.menu a.ativo,
+.menu a.ativo:hover {
+    background: white;
+    color: #6f42a8;
+    font-weight: 600;
+    box-shadow: 0 6px 16px rgba(40, 10, 80, 0.2);
+    transform: none;
+}
+
+.sair {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+
+.sair:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+}
+
+/* Botão que troca entre modo claro e modo escuro (mesmo visual do "Sair") */
+.alternar-tema {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 14px;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 12px;
+    background: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.alternar-tema:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+}
+
+.alternar-tema + .sair {
+    margin-top: 4px;
+}
+
+/* ---- Cartões em geral: mesma borda, sombra e cantos ---- */
+.card-dash,
+.col-progresso,
+.topico-item,
+.recomendacao-ia,
+.chat-container,
+.questao-card,
+.materia-card,
+.topico-card {
+    border: 1px solid var(--borda);
+    box-shadow: var(--sombra);
+}
+
+.card-dash:hover,
+button.topico-item:hover,
+.materia-card:hover,
+.topico-card:hover {
+    box-shadow: var(--sombra-forte);
+    border-color: #d9c6f0;
+}
+
+/* Cartões do topo: faixa e ícone na cor de cada cartão (todas roxas) */
+.card-dash {
+    border-left: 4px solid var(--cor-card, var(--roxo));
+}
+
+.card-dash-icon {
+    color: var(--cor-card, var(--roxo));
+    background: color-mix(in srgb, var(--cor-card, var(--roxo)) 14%, white);
+}
+
+.card-dash-valor {
+    color: var(--texto);
+}
+
+#flashcardsBarra {
+    background: linear-gradient(90deg, #d8b4fe, #8e5cc7);
+}
+
+/* Barras do progresso por matéria */
+.barra-bg {
+    background: #efe6f9;
+}
+
+/* Recomendação da IA com fundo roxinho */
+.recomendacao-ia {
+    background: linear-gradient(135deg, #ffffff 0%, #f6efff 100%);
+    border-color: #e2d3f5;
+}
+
+.recomendacao-ia > i {
+    color: var(--roxo);
+}
+
+/* Botões principais: mesmo degradê roxo do login */
+.btn-iniciar,
+.btn-responder,
+.chat-input-area button {
+    background: linear-gradient(90deg, #9d4edd, #6f42a8);
+    box-shadow: 0 6px 16px rgba(111, 66, 168, 0.28);
+    transition: transform 0.15s, box-shadow 0.2s;
+}
+
+.btn-iniciar:hover,
+.btn-responder:hover,
+.chat-input-area button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(111, 66, 168, 0.36);
+}
+
+/* Botões de matéria (simulado e flashcards) */
+.tag-topico.ativo,
+.filtro-fc.ativo {
+    background: linear-gradient(90deg, #9d4edd, #6f42a8);
+    border-color: transparent;
+    color: white;
+}
+
+/* Alternativas do simulado: destaque roxo ao passar o mouse */
+.alternativa:not(.correta):not(.errada):hover {
+    border-color: #c9b3e6;
+    background: #faf6ff;
+}
+
+/* Cartão do flashcard */
+.flashcard-frente {
+    background: linear-gradient(135deg, #9d4edd, #6f42a8);
+}
+
+/* Chat: balões e campo */
+.chat-input-area input:focus {
+    outline: none;
+    border-color: var(--roxo);
+    box-shadow: 0 0 0 4px rgba(142, 92, 199, 0.15);
+}

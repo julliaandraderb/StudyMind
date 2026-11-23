@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StudyMind</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <!-- Parte esquerda -->
+        <section class="left-side">
+            <h1 class="titulo"><i class="fa-solid fa-graduation-cap"></i>StudyMind</h1>
+            <p class="sub">Seu estudo mais</p>
+            <p class="destaque">inteligente</p>
+            <img 
+                src="/imagem.png" 
+                class="imagem" 
+                alt="Ilustração de estudos"
+            >
+
+        <div class="beneficios">
+
+    <div class="beneficio">
+        <i class="fa-solid fa-bullseye"></i>
+        <span>Defina suas<br>metas</span>
+    </div>
+
+    <div class="separador"></div>
+
+    <div class="beneficio">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Acompanhe seu<br>progresso</span>
+    </div>
+
+    <div class="separador"></div>
+
+    <div class="beneficio">
+        <i class="fa-solid fa-star"></i>
+        <span>Transforme seus<br>sonhos</span>
+    </div>
+
+</div>
+        </section>
+
+        <!-- Parte direita -->
+        <section class="right-side">
+            <form id="loginForm" class="login-box">
+                <h1>Faça seu Login</h1>
+                <div class="campo">
+                    <label for="email">Seu email:</label>
+                    <input 
+                
+                        type="email" 
+                        id="email" 
+                        placeholder="Digite seu email"
+                        required
+                    >
+                </div>
+                <div class="campo">
+                    <label for="password">Sua senha:</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        placeholder="Digite sua senha"
+                        required
+                    >
+                </div>
+                <a href="/recuperar-senha" id="esqueciSenha" class="link-esqueci">Esqueceu sua senha?</a>
+
+                <button type="submit" class="btn btn-principal" id="botaoEntrar">
+                    <span>Entrar</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <div class="divisor"><span>ou</span></div>
+
+                <a href="/login/google" class="btn btn-google">
+                    <i class="fa-brands fa-google"></i>
+                    <span>Entrar com Google</span>
+                </a>
+
+                <p id="message" class="mensagem" role="alert"></p>
+                <p class="cadastro-link">Não tem uma conta? <a href="/cadastro">Cadastre-se</a></p>
+            </form>
+
+            <!-- Aparece depois do login quando a conta ainda não tem nome (coluna "nome" da tabela login) -->
+            <form id="nomeForm" class="login-box" hidden>
+                <h1>Bem-vindo(a)!</h1>
+                <p class="texto-apoio">Como você quer ser chamado(a)? Esse nome aparece no seu painel.</p>
+
+                <div class="campo">
+                    <label for="nomeUsuario">Seu nome:</label>
+                    <input
+                        type="text"
+                        id="nomeUsuario"
+                        maxlength="100"
+                        autocomplete="given-name"
+                        placeholder="Digite seu nome"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="btn btn-principal" id="botaoSalvarNome">
+                    <span>Salvar e entrar</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <p id="mensagemNome" class="mensagem" role="alert"></p>
+            </form>
+
+            <form id="recuperarSenha" class="login-box" hidden>
+                <h1>Recuperar senha</h1>
+                <p class="texto-apoio">Digite o e-mail da sua conta.</p>
+
+                <div class="campo">
+                    <label for="emailRecuperacao">Seu email:</label>
+                    <input
+                        type="email"
+                        id="emailRecuperacao"
+                        placeholder="Digite seu email"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="btn btn-principal" id="enviarCodigo">
+                    <span>Enviar código</span>
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+                <button type="button" class="btn btn-secundario" id="voltarLogin">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Voltar para o login</span>
+                </button>
+
+                <p id="mensagemRecuperacao" class="mensagem" role="alert"></p>
+            </form>
+
+            <form id="redefinirSenha" class="login-box" hidden>
+                <h1>Nova senha</h1>
+                <p class="texto-apoio" id="textoCodigoEnviado">Digite o código que enviamos para o seu e-mail.</p>
+
+                <div class="campo">
+                    <label for="codigo">Código de 6 dígitos:</label>
+                    <input
+                        type="text"
+                        id="codigo"
+                        class="campo-codigo"
+                        inputmode="numeric"
+                        autocomplete="one-time-code"
+                        maxlength="6"
+                        pattern="[0-9]{6}"
+                        placeholder="000000"
+                        required
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="novaSenha">Nova senha:</label>
+                    <input
+                        type="password"
+                        id="novaSenha"
+                        minlength="6"
+                        autocomplete="new-password"
+                        placeholder="Pelo menos 6 caracteres"
+                        required
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="confirmarNovaSenha">Confirme a nova senha:</label>
+                    <input
+                        type="password"
+                        id="confirmarNovaSenha"
+                        minlength="6"
+                        autocomplete="new-password"
+                        placeholder="Digite a senha de novo"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="btn btn-principal" id="botaoRedefinir">
+                    <span>Trocar senha</span>
+                    <i class="fa-solid fa-check"></i>
+                </button>
+                <button type="button" class="btn btn-secundario" id="reenviarCodigo">
+                    <i class="fa-solid fa-rotate-right"></i>
+                    <span>Não recebi o código</span>
+                </button>
+
+                <p id="mensagemRedefinir" class="mensagem" role="alert"></p>
+            </form>
+        </section>
+    </div>
+
+    <script src="/js/login.js"></script>
+</body>
+</html>

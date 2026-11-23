@@ -1,0 +1,686 @@
+/* ===============================================
+   MATÉRIAS E GUIAS DE ESTUDO
+   =============================================== */
+.materias-container {
+    max-width: 1120px;
+    margin: 0 auto;
+    --guia-tinta: #2d1b4e;
+    --guia-suave: #6b5a7a;
+    --guia-borda: #e8e0f0;
+    --guia-roxo: #8e5cc7;
+    --guia-roxo-escuro: #6f42a8;
+    --guia-laranja: #8e5cc7;
+    --guia-laranja-fundo: #f3ecfb;
+    --guia-laranja-borda: #dcc8f2;
+    --guia-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+}
+
+/* Botões de tópico do dashboard agora abrem o guia */
+button.topico-item {
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button.topico-item:hover {
+    border-color: #c9b3e6;
+    transform: translateY(-2px);
+}
+
+/* ---- Lista de matérias ---- */
+.materias-topo {
+    margin-bottom: 24px;
+}
+
+.materias-topo h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--guia-tinta);
+}
+
+.materias-topo p {
+    font-size: 14px;
+    color: var(--guia-suave);
+}
+
+.materias-grade {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 18px;
+}
+
+.materia-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    text-align: left;
+    background: white;
+    border: 1px solid var(--guia-borda);
+    border-top: 4px solid var(--cor-materia);
+    border-radius: 16px;
+    padding: 20px;
+    font-family: inherit;
+    color: var(--guia-tinta);
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(45, 27, 78, 0.04);
+    transition: 0.2s;
+}
+
+.materia-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(45, 27, 78, 0.1);
+}
+
+.materia-icone {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: var(--cor-materia);
+    background: #f5f0fa;
+    background: color-mix(in srgb, var(--cor-materia) 12%, white);
+    margin-bottom: 6px;
+    flex-shrink: 0;
+}
+
+.materia-area {
+    font-family: var(--guia-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--guia-suave);
+}
+
+.materia-nome {
+    font-size: 19px;
+}
+
+.materia-topicos {
+    font-size: 13px;
+    color: var(--guia-suave);
+}
+
+.materia-quantidade {
+    margin-top: auto;
+    padding-top: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cor-materia);
+}
+
+/* ---- Página de uma matéria ---- */
+.materia-cabecalho {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.materia-cabecalho .materia-icone {
+    margin-bottom: 0;
+}
+
+.topicos-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.topico-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    text-align: left;
+    background: white;
+    border: 1px solid var(--guia-borda);
+    border-left: 4px solid var(--cor-materia);
+    border-radius: 14px;
+    padding: 20px 22px;
+    font-family: inherit;
+    color: var(--guia-tinta);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.topico-card:hover {
+    box-shadow: 0 8px 20px rgba(45, 27, 78, 0.08);
+}
+
+.topico-card strong {
+    font-size: 18px;
+}
+
+.topico-card p {
+    font-size: 14px;
+    color: var(--guia-suave);
+    margin: 4px 0 8px;
+}
+
+.topico-card-secoes {
+    font-size: 12px;
+    color: var(--guia-roxo-escuro);
+}
+
+.topico-card > i {
+    color: var(--cor-materia);
+}
+
+/* ---- Trilha (Matérias › Física › ...) ---- */
+.guia-trilha {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--guia-suave);
+    margin-bottom: 18px;
+}
+
+.guia-trilha button {
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
+    color: var(--guia-roxo-escuro);
+    cursor: pointer;
+}
+
+.guia-trilha button:hover {
+    text-decoration: underline;
+}
+
+.guia-trilha i {
+    font-size: 10px;
+}
+
+/* ---- Cabeçalho do guia ---- */
+.guia-hero {
+    position: relative;
+    overflow: hidden;
+    background: white;
+    border: 1px solid var(--guia-borda);
+    border-radius: 22px;
+    padding: 36px 40px;
+    margin-bottom: 18px;
+}
+
+.guia-hero::after {
+    content: "";
+    position: absolute;
+    right: -80px;
+    top: -80px;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(157, 78, 221, 0.18), transparent 70%);
+    pointer-events: none;
+}
+
+.guia-etiqueta {
+    display: inline-block;
+    font-family: var(--guia-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--guia-laranja);
+    background: var(--guia-laranja-fundo);
+    border: 1px solid var(--guia-laranja-borda);
+    border-radius: 6px;
+    padding: 4px 10px;
+}
+
+.guia-hero h1 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 1.1;
+    color: var(--guia-tinta);
+    margin: 16px 0 10px;
+}
+
+.guia-hero p {
+    max-width: 680px;
+    color: var(--guia-suave);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* ---- Fórmulas em destaque ---- */
+.guia-formulas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.guia-formula {
+    display: grid;
+    place-items: center;
+    background: white;
+    border: 1px solid var(--guia-borda);
+    border-radius: 12px;
+    padding: 14px 12px;
+    text-align: center;
+    font-family: var(--guia-mono);
+    font-size: 13px;
+    color: var(--guia-roxo-escuro);
+}
+
+/* ---- Layout com índice lateral ---- */
+.guia-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px;
+    gap: 24px;
+    align-items: start;
+}
+
+.guia-secoes {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.guia-indice {
+    position: sticky;
+    top: 24px;
+    background: white;
+    border: 1px solid var(--guia-borda);
+    border-radius: 18px;
+    padding: 20px;
+}
+
+.guia-indice ol {
+    list-style: none;
+    margin: 12px 0 16px;
+}
+
+.guia-indice li + li {
+    border-top: 1px solid var(--guia-borda);
+}
+
+.guia-indice a {
+    display: flex;
+    gap: 10px;
+    padding: 11px 6px;
+    font-size: 13px;
+    color: var(--guia-tinta);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.guia-indice a span {
+    font-family: var(--guia-mono);
+    font-size: 11px;
+    color: var(--guia-laranja);
+    padding-top: 2px;
+}
+
+.guia-indice a:hover,
+.guia-indice a.ativo {
+    background: #f5f0fa;
+    color: var(--guia-roxo-escuro);
+    font-weight: 600;
+}
+
+.guia-perguntar {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background: var(--guia-roxo);
+    color: white;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.guia-perguntar:hover {
+    background: var(--guia-roxo-escuro);
+}
+
+/* ---- Rótulos pequenos ---- */
+.guia-rotulo,
+.guia-rotulo-cinza {
+    display: block;
+    font-family: var(--guia-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.guia-rotulo {
+    color: var(--guia-roxo);
+    margin-bottom: 10px;
+}
+
+.guia-rotulo-cinza {
+    color: #a596b3;
+}
+
+.guia-rotulo-solto {
+    margin: 22px 0 12px;
+}
+
+/* ---- Seção do guia ---- */
+.guia-secao {
+    background: white;
+    border: 1px solid var(--guia-borda);
+    border-radius: 20px;
+    padding: 28px;
+    scroll-margin-top: 20px;
+}
+
+.guia-secao-topo {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.guia-numero {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    font-family: var(--guia-mono);
+    font-size: 13px;
+    color: var(--guia-laranja);
+    background: var(--guia-laranja-fundo);
+    border: 1px solid var(--guia-laranja-borda);
+    border-radius: 9px;
+}
+
+.guia-secao-topo h2 {
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--guia-tinta);
+}
+
+.guia-secao-topo p {
+    font-size: 14px;
+    color: var(--guia-suave);
+    line-height: 1.55;
+}
+
+.guia-conceito {
+    background: #faf7fd;
+    border: 1px solid var(--guia-borda);
+    border-radius: 14px;
+    padding: 20px;
+}
+
+.guia-conceito p {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--guia-tinta);
+}
+
+.guia-conceito p + p {
+    margin-top: 10px;
+}
+
+/* ---- Diagrama ---- */
+.guia-diagrama {
+    margin: 18px 0 0;
+    border: 1px solid var(--guia-borda);
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.guia-diagrama-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--guia-borda);
+    font-size: 14px;
+    color: var(--guia-tinta);
+}
+
+.guia-diagrama-imagem {
+    padding: 16px 18px 6px;
+    background: #fdfbff;
+}
+
+.guia-diagrama-imagem svg {
+    display: block;
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.guia-diagrama figcaption {
+    padding: 14px 18px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--guia-suave);
+    border-top: 1px solid var(--guia-borda);
+}
+
+/* Cores e traços dos diagramas (SVG) */
+.guia-diagrama-imagem .dg-traco { stroke: #4a3a5c; stroke-width: 2; fill: none; }
+.guia-diagrama-imagem .dg-roxo { stroke: #8e5cc7; stroke-width: 2; fill: none; }
+.guia-diagrama-imagem .dg-laranja { stroke: #d9822b; stroke-width: 2; fill: none; }
+.guia-diagrama-imagem .dg-verde { stroke: #3a9d5d; stroke-width: 2; fill: none; }
+.guia-diagrama-imagem .dg-azul { stroke: #2f7fb5; stroke-width: 2; fill: none; }
+.guia-diagrama-imagem .dg-grosso { stroke-width: 3.5; }
+.guia-diagrama-imagem .dg-tracejado { stroke-dasharray: 6 5; }
+.guia-diagrama-imagem .dg-separador { stroke: #e2d8ee; stroke-width: 1.5; }
+.guia-diagrama-imagem .dg-roxo-cheio { fill: #8e5cc7; }
+.guia-diagrama-imagem .dg-laranja-cheio { fill: #d9822b; }
+.guia-diagrama-imagem .dg-verde-cheio { fill: #3a9d5d; }
+.guia-diagrama-imagem .dg-azul-cheio { fill: #2f7fb5; }
+.guia-diagrama-imagem .dg-tinta-cheio { fill: #4a3a5c; }
+.guia-diagrama-imagem .dg-txt { fill: #6b5a7a; font-family: 'Poppins', sans-serif; font-size: 11px; }
+.guia-diagrama-imagem .dg-forte { fill: #2d1b4e; font-weight: 600; }
+.guia-diagrama-imagem .dg-roxo-txt { fill: #6f42a8; }
+.guia-diagrama-imagem .dg-laranja-txt { fill: #c06f1f; }
+.guia-diagrama-imagem .dg-verde-txt { fill: #2e7d4a; }
+.guia-diagrama-imagem .dg-azul-txt { fill: #23679a; }
+.guia-diagrama-imagem .dg-equacao { fill: #2d1b4e; font-family: 'JetBrains Mono', monospace; font-size: 15px; }
+.guia-diagrama-imagem .dg-caixa { fill: white; stroke: #d9cbe9; stroke-width: 1.5; }
+.guia-diagrama-imagem .dg-caixa-roxa { fill: #f1e9fa; stroke: #c9b3e6; stroke-width: 1.5; }
+.guia-diagrama-imagem .dg-caixa-verde { fill: #e8f5ec; stroke: #a9d6b8; stroke-width: 1.5; }
+.guia-diagrama-imagem .dg-caixa-laranja { fill: #fdf3e7; stroke: #f3d6b3; stroke-width: 1.5; }
+.guia-diagrama-imagem .dg-caixa-tracejada { fill: none; stroke: #e0b98f; stroke-width: 1.5; stroke-dasharray: 5 4; }
+.guia-diagrama-imagem .dg-medidor { fill: white; stroke: #8e5cc7; stroke-width: 2; }
+.guia-diagrama-imagem .dg-quadro { fill: #efe8f7; }
+.guia-diagrama-imagem .dg-quadro-cheio { fill: #8e5cc7; }
+.guia-diagrama-imagem .dg-barra { fill: #d9cbe9; }
+.guia-diagrama-imagem .dg-barra-roxa { fill: #8e5cc7; }
+.guia-diagrama-imagem .dg-barra-laranja { fill: #e9a35c; }
+.guia-diagrama-imagem .dg-nivel-1 { fill: #e8f5ec; stroke: #a9d6b8; }
+.guia-diagrama-imagem .dg-nivel-2 { fill: #f1e9fa; stroke: #c9b3e6; }
+.guia-diagrama-imagem .dg-nivel-3 { fill: #e4d6f5; stroke: #b597de; }
+.guia-diagrama-imagem .dg-nivel-4 { fill: #fdf3e7; stroke: #f3d6b3; }
+.guia-diagrama-imagem .dg-faixa-1 { fill: #e4d6f5; }
+.guia-diagrama-imagem .dg-faixa-2 { fill: #c9b3e6; }
+.guia-diagrama-imagem .dg-faixa-3 { fill: #f3d6b3; }
+.guia-diagrama-imagem .dg-mar { fill: #d6e9f6; }
+.guia-diagrama-imagem .dg-serra { fill: #e3dccd; stroke: #b8ab92; stroke-width: 1.5; }
+.guia-diagrama-imagem .dg-nuvem { fill: #e9eef3; stroke: #b9c6d3; stroke-width: 1.5; }
+
+/* ---- Cards de conceitos ---- */
+.guia-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.guia-card {
+    background: white;
+    border: 1px solid var(--guia-borda);
+    border-radius: 14px;
+    padding: 16px 18px;
+}
+
+.guia-card strong {
+    display: block;
+    font-size: 15px;
+    color: var(--guia-tinta);
+    margin-bottom: 6px;
+}
+
+.guia-card p {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--guia-suave);
+}
+
+/* ---- Exemplo resolvido ---- */
+.guia-exemplo {
+    margin-top: 22px;
+    background: #f3ecfb;
+    border: 1px solid #dcc8f2;
+    border-radius: 16px;
+    padding: 22px;
+}
+
+.guia-exemplo h3 {
+    font-size: 17px;
+    color: var(--guia-tinta);
+    margin-bottom: 8px;
+}
+
+.guia-exemplo > p {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #4f3d63;
+}
+
+.guia-passos {
+    list-style: none;
+    margin: 16px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.guia-passos li {
+    display: flex;
+    gap: 12px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--guia-tinta);
+}
+
+.guia-passos-calculo li div {
+    font-family: var(--guia-mono);
+    font-size: 13px;
+}
+
+.guia-passos li span {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #dcc8f2;
+    color: var(--guia-roxo-escuro);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.guia-resultado {
+    padding-top: 14px;
+    border-top: 1px solid #dcc8f2;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--guia-tinta);
+}
+
+/* ---- Atenção ---- */
+.guia-atencao {
+    display: flex;
+    gap: 14px;
+    margin-top: 18px;
+    background: var(--guia-laranja-fundo);
+    border: 1px solid var(--guia-laranja-borda);
+    border-radius: 14px;
+    padding: 16px 18px;
+}
+
+.guia-atencao span {
+    flex-shrink: 0;
+    font-family: var(--guia-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--guia-laranja);
+    padding-top: 2px;
+}
+
+.guia-atencao p {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #6b4a2a;
+}
+
+/* ---- Final do guia ---- */
+.guia-final {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: white;
+    border: 1px solid var(--guia-borda);
+    border-radius: 18px;
+    padding: 20px 24px;
+}
+
+.guia-final strong {
+    color: var(--guia-tinta);
+}
+
+.guia-final p {
+    font-size: 13.5px;
+    color: var(--guia-suave);
+}
+
+/* ---- Telas menores ---- */
+@media (max-width: 1000px) {
+    .guia-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .guia-indice {
+        position: static;
+        order: -1;
+    }
+}
+
+@media (max-width: 600px) {
+    .guia-hero {
+        padding: 26px 22px;
+    }
+
+    .guia-hero h1 {
+        font-size: 36px;
+    }
+
+    .guia-secao {
+        padding: 20px 16px;
+    }
+
+    .guia-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .guia-atencao,
+    .guia-final {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

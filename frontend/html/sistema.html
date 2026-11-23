@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudyMind · Sistema de Estudos</title>
+
+    <!-- Fontes e ícones -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Instrument+Serif&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <!-- KaTeX: desenha as fórmulas matemáticas das respostas da IA -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/sistema.css" />
+    <link rel="stylesheet" href="/css/materias.css" />
+    <link rel="stylesheet" href="/css/tema-escuro.css" />
+
+    <!-- Aplica o modo escuro antes de desenhar a página (evita piscar branco ao recarregar) -->
+    <script>
+        try {
+            if (localStorage.getItem("tema") === "escuro") {
+                document.documentElement.setAttribute("data-theme", "dark");
+            }
+        } catch (erro) {}
+    </script>
+</head>
+<body>
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+
+        <!-- LOGO -->
+        <div class="logo">
+            <i class="fa-solid fa-brain"></i>
+            <span>StudyMind</span>
+        </div>
+
+        <!-- MENU PRINCIPAL -->
+        <nav class="menu">
+            <a href="#" class="ativo" onclick="mostrarSecao('dashboard')">
+                <i class="fa-solid fa-chart-simple"></i> Dashboard
+            </a>
+            <a href="#" onclick="abrirMaterias()">
+                <i class="fa-solid fa-book-open"></i> Matérias
+            </a>
+            <a href="#" onclick="mostrarSecao('chat')">
+                <i class="fa-solid fa-comment-dots"></i> Chat com IA
+            </a>
+            <a href="#" onclick="mostrarSecao('flashcards')">
+                <i class="fa-solid fa-layer-group"></i> Flashcards
+            </a>
+            <a href="#" onclick="mostrarSecao('questoes')">
+                <i class="fa-solid fa-pen-to-square"></i> Questões
+            </a>
+        </nav>
+
+        <!-- TAREFAS -->
+        <div class="tarefas">
+            <div class="tarefas-titulo">
+                <span>Minhas tarefas</span>
+                <i class="fa-solid fa-list-check"></i>
+            </div>
+
+            <!-- As tarefas são carregadas da tabela "deveres" pelo sistema.js -->
+
+            <button class="nova-tarefa" onclick="adicionarTarefa()">
+                <i class="fa-solid fa-plus"></i> Nova tarefa
+            </button>
+        </div>
+
+        <!-- Troca entre modo claro e escuro (a escolha fica salva no navegador) -->
+        <button type="button" class="alternar-tema" id="botaoTema">
+            <i class="fa-solid fa-moon"></i> <span>Modo escuro</span>
+        </button>
+
+        <!-- Sair: a tela de login encerra a sessão -->
+        <a href="/" class="sair">
+            <i class="fa-solid fa-right-from-bracket"></i> Sair
+        </a>
+
+    </aside>
+
+    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+    <main class="main-content">
+
+        <!-- ======================================== -->
+        <!-- SEÇÃO: DASHBOARD -->
+        <!-- ======================================== -->
+        <section id="dashboard" class="secao ativa">
+
+            <!-- TOPO -->
+            <div class="topo-dash">
+                <div class="saudacao">
+                    <h1><span id="saudacao">Olá</span>, <span class="nome-usuario"></span>.</h1>
+                    <p id="resumoDia">Carregando seu resumo de hoje...</p>
+                </div>
+                <div class="data">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span id="dataAtual">Terça-feira, 1 de setembro de 2026</span>
+                </div>
+            </div>
+
+            <!-- CARDS DE ESTATÍSTICAS -->
+            <div class="cards-dash">
+                <div class="card-dash" style="--cor-card: #c77dff;">
+                    <div class="card-dash-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <div class="card-dash-info">
+                        <span class="card-dash-valor" id="desempenhoGeral"></span>
+                        <span class="card-dash-label">Desempenho geral</span>
+                        <span class="card-dash-trend" id="desempenhoTrend"></span>
+                    </div>
+                </div>
+
+                <div class="card-dash" style="--cor-card: #a855f7;">
+                    <div class="card-dash-icon">
+                        <i class="fa-solid fa-pencil"></i>
+                    </div>
+                    <div class="card-dash-info">
+                        <span class="card-dash-valor" id="questoesHoje">0</span>
+                        <span class="card-dash-label">Questões hoje</span>
+                        <span class="card-dash-trend" id="questoesTrend"></span>
+                        <div class="card-dash-meta"><div id="questoesBarra"></div></div>
+                    </div>
+                </div>
+
+                <div class="card-dash" style="--cor-card: #8e5cc7;">
+                    <div class="card-dash-icon">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <div class="card-dash-info">
+                        <span class="card-dash-valor" id="flashcardsHoje">0</span>
+                        <span class="card-dash-label">Flashcards revisados</span>
+                        <span class="card-dash-trend" id="flashcardsTrend"></span>
+                        <div class="card-dash-meta"><div id="flashcardsBarra"></div></div>
+                    </div>
+                </div>
+
+                <div class="card-dash" style="--cor-card: #6f42a8;">
+                    <div class="card-dash-icon">
+                        <i class="fa-solid fa-fire"></i>
+                    </div>
+                    <div class="card-dash-info">
+                        <span class="card-dash-valor" id="sequenciaAtual">0</span>
+                        <span class="card-dash-label">Dias de sequência</span>
+                        <span class="card-dash-trend" id="sequenciaTrend"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROGRESSO POR MATÉRIA + DESEMPENHO GERAL -->
+            <div class="row-dash">
+               <div class="col-progresso">
+                    <h3>Progresso por matéria</h3>
+                    <div id="progressoMaterias"></div>
+                </div>
+                <div class="col-desempenho">
+                    <div class="circulo-desempenho">
+                        <svg viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="50" fill="none" stroke="#e8e0f0" stroke-width="10"/>
+                            <circle id="circuloMedia" cx="60" cy="60" r="50" fill="none" stroke="#8e5cc7" stroke-width="10"
+                                stroke-dasharray="314.16" stroke-dashoffset="314.16"
+                                stroke-linecap="round" transform="rotate(-90 60 60)"/>
+                        </svg>
+                        <div class="circulo-texto">
+                            <strong id="mediaDia">0%</strong>
+                            <span>média de hoje</span>
+                        </div>
+                    </div>
+                    <div class="botoes-revisar" id="botoesRevisar"></div>
+                    <p class="meta-semanal" id="mensagemMedia"></p>
+                </div>
+            </div>
+
+            <!-- TÓPICOS PARA REVISAR -->
+            <div class="revisar-painel">
+                <div class="revisar-cabecalho">
+                    <div class="revisar-icone">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <div class="revisar-titulo">
+                        <h3>Revisar hoje</h3>
+                        <p>Matérias em que você errou algo desde ontem</p>
+                    </div>
+                    <span class="revisar-contador" id="revisarContador" hidden></span>
+                </div>
+                <div class="revisar-grade" id="topicosRevisar"></div>
+            </div>
+
+            <!-- RECOMENDAÇÃO IA -->
+            <div class="recomendacao-ia">
+                <i class="fa-solid fa-robot"></i>
+                <div>
+                    <strong>StudyMind recomenda</strong>
+                    <p id="recomendacaoTexto">Analisando seu histórico...</p>
+                </div>
+                <button class="btn-iniciar" id="recomendacaoBotao" hidden></button>
+            </div>
+
+        </section>
+
+        <!-- ======================================== -->
+        <!-- SEÇÃO: MATÉRIAS (montada pelo guias.js) -->
+        <!-- ======================================== -->
+        <section id="materias" class="secao">
+            <div class="materias-container" id="materiasConteudo"></div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- SEÇÃO: CHAT COM IA -->
+        <!-- ======================================== -->
+        <section id="chat" class="secao">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="chat-header-info">
+                        <i class="fa-solid fa-robot" style="color:#8e5cc7; font-size:24px;"></i>
+                        <div>
+                            <strong>StudyMind AI</strong>
+                            <span class="online">● Online</span>
+                            <span class="especialista">Assistente de estudos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-mensagens">
+                    <div class="msg-ia">
+                        <i class="fa-solid fa-robot"></i>
+                        <div class="msg-bubble">
+                            Olá, <span class="nome-usuario"></span>! 👋 Sou o StudyMind AI.<br>
+                            Posso <strong>explicar qualquer matéria</strong>, resolver exercícios passo a passo ou montar um <strong>plano de estudos</strong>.<br>
+                            Por onde quer começar?
+                            <span class="msg-hora" id="horaBoasVindas"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-sugestoes">
+                    <button>Explica eletrodinâmica</button>
+                    <button>Explica porcentagem</button>
+                    <button>Cria um plano de estudos</button>
+                    <button>Resumo de Física</button>
+                </div>
+
+                <div class="chat-input">
+                    <div class="chat-input-perfil">
+                        <div class="avatar-mini" id="avatarUsuario"></div>
+                        <span><span class="nome-usuario"></span> <small>Estudante</small></span>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" placeholder="Pergunte sobre qualquer matéria..." />
+                        <button><i class="fa-solid fa-paper-plane"></i> Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- SEÇÃO: FLASHCARDS -->
+        <!-- ======================================== -->
+        <section id="flashcards" class="secao">
+            <div class="flashcards-container">
+                <div class="flashcards-header">
+                    <div>
+                        <h2>Deck de revisão</h2>
+                        <p>Os cartões que você erra voltam mais vezes até você aprender.</p>
+                    </div>
+                    <div class="flashcard-placar">
+                        <span class="placar-sabia" title="Sabia"><i class="fa-solid fa-check"></i> <strong id="fcSabia">0</strong></span>
+                        <span class="placar-revisar" title="Precisou revisar"><i class="fa-solid fa-rotate"></i> <strong id="fcRevisar">0</strong></span>
+                    </div>
+                </div>
+
+                <div class="flashcard-filtros" id="fcFiltros"></div>
+
+                <div class="flashcard-progresso">
+                    <div class="flashcard-progresso-barra" id="fcBarra"></div>
+                </div>
+                <p class="flashcard-posicao" id="fcPosicao"></p>
+
+                <div class="flashcard-jogo" id="fcJogo">
+                    <div class="flashcard-cena">
+                        <div class="flashcard-card" id="fcCard" tabindex="0" role="button" aria-label="Virar cartão">
+                            <div class="flashcard-face flashcard-frente">
+                                <span class="flashcard-materia" id="fcMateriaFrente"></span>
+                                <p class="flashcard-pergunta" id="fcPergunta"></p>
+                                <span class="flashcard-dica"><i class="fa-solid fa-hand-pointer"></i> Clique ou aperte Espaço para virar</span>
+                            </div>
+                            <div class="flashcard-face flashcard-verso">
+                                <span class="flashcard-materia" id="fcMateriaVerso"></span>
+                                <p class="flashcard-resposta" id="fcResposta"></p>
+                                <code class="flashcard-formula" id="fcFormula"></code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard-avaliacao">
+                        <button class="btn-nao-sei" id="fcBtnRevisar" disabled>
+                            <i class="fa-solid fa-rotate"></i> Preciso revisar <kbd>1</kbd>
+                        </button>
+                        <button class="btn-sei" id="fcBtnSabia" disabled>
+                            <i class="fa-solid fa-check"></i> Sabia! <kbd>2</kbd>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flashcard-fim" id="fcFim" hidden>
+                    <i class="fa-solid fa-trophy"></i>
+                    <h3>Deck concluído!</h3>
+                    <p id="fcResumo"></p>
+                    <div class="flashcard-fim-botoes">
+                        <button class="btn-revelar" id="fcBtnErrados">Praticar só os que errei</button>
+                        <button class="btn-secundario" id="fcBtnRecomecar">Recomeçar deck</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- SEÇÃO: QUESTÕES -->
+        <!-- ======================================== -->
+        <section id="questoes" class="secao">
+            <div class="questoes-container">
+                <div class="questoes-header">
+                    <h2>Simulado adaptativo</h2>
+                </div>
+
+                <div class="questao-tags">
+                    <button class="tag-topico">Física</button>
+                    <button class="tag-topico">Matemática</button>
+                    <button class="tag-topico">Português</button>
+                    <button class="tag-topico">Química</button>
+                    <button class="tag-topico">Biologia</button>
+                    <button class="tag-topico">Geografia</button>
+                    <button class="tag-topico">História</button>
+                    <button class="tag-topico">Filosofia</button>
+                </div>
+
+                <div class="mensagem-inicial-simulado">
+                    <h1>Vamos estudar?</h1>
+                    <p>Selecione uma matéria para começar o simulado.</p>
+                    <p>Suas questões aparecerão aqui.</p>
+                </div>
+
+                <div class="questao-card" id="questaoCard"></div>
+                                </div>
+        </section>
+
+    </main>
+
+    <!-- JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+    <script src="/js/questoes.js"></script>
+    <script src="/js/flashcards.js"></script>
+    <script src="/js/sistema.js"></script>
+    <script src="/js/materias.js"></script>
+    <script src="/js/materias-humanas.js"></script>
+    <script src="/js/materias-extras.js"></script>
+    <script src="/js/guias.js"></script>
+    <script src="/js/dashboard.js"></script>
+    <script src="/js/tema.js"></script>
+</body>
+</html>

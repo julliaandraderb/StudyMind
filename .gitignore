@@ -1,0 +1,14 @@
+# Senhas e chaves (cada pessoa cria o seu a partir do backend/.env.example)
+.env
+
+# Ambientes virtuais do Python
+venv/
+.venv/
+
+# Arquivos gerados pelo Python
+__pycache__/
+*.pyc
+
+# Configurações pessoais do editor e do Claude Code
+.vscode/
+.claude/settings.local.json

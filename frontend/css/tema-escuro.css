@@ -1,0 +1,463 @@
+/* ===============================================
+   MODO ESCURO
+   Só vale quando o <html> tem data-theme="dark" (botão "Modo escuro" do menu).
+   O modo claro continua exatamente como está em sistema.css e materias.css.
+   =============================================== */
+
+[data-theme="dark"] {
+    color-scheme: dark;
+
+    /* Paleta do modo escuro */
+    --fundo: #130e1c;
+    --superficie: #1f1830;
+    --superficie-2: #2a2140;
+    --trilho: #2f2547;
+    --borda: #3a2f52;
+    --borda-forte: #5a4680;
+    --texto: #ece6f6;
+    --texto-suave: #b3a6c6;
+    --texto-fraco: #8a7da0;
+    --roxo-texto: #c9a7f0;
+    --roxo-claro: #b388eb;
+    --roxo-fundo: rgba(157, 78, 221, 0.2);
+    --rosa-texto: #f07fd8;
+    --rosa-fundo: rgba(240, 127, 216, 0.15);
+    --cor-positiva: #c39bf2;
+    --cor-negativa: #f07fd8;
+    --sombra: 0 4px 18px rgba(0, 0, 0, 0.35);
+    --sombra-forte: 0 10px 28px rgba(0, 0, 0, 0.5);
+}
+
+/* ---- Fundo da página ---- */
+[data-theme="dark"] body {
+    background:
+        radial-gradient(circle at 85% -10%, rgba(157, 78, 221, 0.16), transparent 45%),
+        var(--fundo);
+    background-attachment: fixed;
+    color: var(--texto);
+}
+
+[data-theme="dark"] .main-content {
+    background: transparent;
+}
+
+[data-theme="dark"] * {
+    scrollbar-color: #4a3a66 transparent;
+}
+
+/* ---- Menu lateral ---- */
+[data-theme="dark"] .sidebar {
+    background: linear-gradient(180deg, #2c1d48 0%, #22163b 60%, #1a1030 100%);
+    box-shadow: 6px 0 30px rgba(0, 0, 0, 0.4);
+    border-right: 1px solid var(--borda);
+}
+
+[data-theme="dark"] .menu a.ativo,
+[data-theme="dark"] .menu a.ativo:hover {
+    background: rgba(199, 125, 255, 0.22);
+    color: white;
+    box-shadow: none;
+}
+
+[data-theme="dark"] .tarefas {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .nova-tarefa {
+    background: var(--superficie-2);
+    color: var(--roxo-texto);
+}
+
+[data-theme="dark"] .tarefa .tarefa-input {
+    background: var(--superficie-2);
+    color: var(--texto);
+}
+
+/* ---- Superfícies (cartões, caixas, botões claros) ---- */
+[data-theme="dark"] .topo-dash .data,
+[data-theme="dark"] .card-dash,
+[data-theme="dark"] .col-progresso,
+[data-theme="dark"] .topico-item,
+[data-theme="dark"] .chat-header,
+[data-theme="dark"] .chat-mensagens,
+[data-theme="dark"] .chat-sugestoes,
+[data-theme="dark"] .chat-input,
+[data-theme="dark"] .flashcard-placar span,
+[data-theme="dark"] .filtro-fc,
+[data-theme="dark"] .flashcard-fim,
+[data-theme="dark"] .btn-secundario,
+[data-theme="dark"] .questoes-header span,
+[data-theme="dark"] .questao-card,
+[data-theme="dark"] .tag-topico,
+[data-theme="dark"] .mensagem-inicial-simulado,
+[data-theme="dark"] .materia-card,
+[data-theme="dark"] .topico-card,
+[data-theme="dark"] .guia-hero,
+[data-theme="dark"] .guia-formula,
+[data-theme="dark"] .guia-indice,
+[data-theme="dark"] .guia-secao,
+[data-theme="dark"] .guia-card,
+[data-theme="dark"] .guia-final {
+    background: var(--superficie);
+    border-color: var(--borda);
+}
+
+[data-theme="dark"] .card-dash {
+    border-left-color: var(--cor-card, var(--roxo));
+}
+
+[data-theme="dark"] .materia-card {
+    border-top-color: var(--cor-materia);
+}
+
+[data-theme="dark"] .topico-card {
+    border-left-color: var(--cor-materia);
+}
+
+/* Botão de matéria selecionado continua com o degradê roxo */
+[data-theme="dark"] .tag-topico.ativo,
+[data-theme="dark"] .filtro-fc.ativo {
+    background: linear-gradient(90deg, #9d4edd, #6f42a8);
+    border-color: transparent;
+    color: white;
+}
+
+[data-theme="dark"] .card-dash:hover,
+[data-theme="dark"] button.topico-item:hover,
+[data-theme="dark"] .materia-card:hover,
+[data-theme="dark"] .topico-card:hover {
+    border-color: var(--borda-forte);
+}
+
+/* Fundos sutis (antes lilás bem claro) */
+[data-theme="dark"] .chat-header-info div .especialista,
+[data-theme="dark"] .msg-bubble,
+[data-theme="dark"] .chat-sugestoes button,
+[data-theme="dark"] .chat-input-area input,
+[data-theme="dark"] .btn-secundario:hover,
+[data-theme="dark"] .guia-indice a:hover,
+[data-theme="dark"] .guia-indice a.ativo {
+    background: var(--superficie-2);
+    border-color: var(--borda);
+}
+
+[data-theme="dark"] .card-dash-icon {
+    background: color-mix(in srgb, var(--cor-card, var(--roxo)) 22%, var(--superficie));
+}
+
+[data-theme="dark"] .recomendacao-ia {
+    background: linear-gradient(135deg, var(--superficie) 0%, #2a1d42 100%);
+    border-color: #3f3160;
+}
+
+/* ---- Textos principais ---- */
+[data-theme="dark"] .topo-dash .saudacao h1,
+[data-theme="dark"] .barra-materia,
+[data-theme="dark"] .circulo-desempenho .circulo-texto strong,
+[data-theme="dark"] .topico-item span:first-child,
+[data-theme="dark"] .recomendacao-ia div strong,
+[data-theme="dark"] .recomendacao-ia div p strong,
+[data-theme="dark"] .chat-header-info div strong,
+[data-theme="dark"] .msg-bubble,
+[data-theme="dark"] .chat-input-perfil span,
+[data-theme="dark"] .chat-input-area input,
+[data-theme="dark"] .flashcards-header h2,
+[data-theme="dark"] .flashcard-fim h3,
+[data-theme="dark"] .questoes-header h2,
+[data-theme="dark"] .questao-resultado,
+[data-theme="dark"] .questao-enunciado,
+[data-theme="dark"] .alternativa,
+[data-theme="dark"] .mensagem-inicial-simulado h1 {
+    color: var(--texto);
+}
+
+/* O cartão do flashcard é roxo: a pergunta fica branca para dar leitura */
+[data-theme="dark"] .flashcard-frente .flashcard-pergunta {
+    color: white;
+}
+
+/* ---- Textos secundários ---- */
+[data-theme="dark"] .topo-dash .saudacao p,
+[data-theme="dark"] .topo-dash .data,
+[data-theme="dark"] .card-dash-label,
+[data-theme="dark"] .circulo-desempenho .circulo-texto span,
+[data-theme="dark"] .recomendacao-ia div p,
+[data-theme="dark"] .chat-header-info div .especialista,
+[data-theme="dark"] .chat-input-perfil span small,
+[data-theme="dark"] .flashcards-header p,
+[data-theme="dark"] .filtro-fc,
+[data-theme="dark"] .flashcard-fim p,
+[data-theme="dark"] .questoes-header span,
+[data-theme="dark"] .mensagem-inicial-simulado p,
+[data-theme="dark"] #progressoMaterias,
+[data-theme="dark"] .tag-topico {
+    color: var(--texto-suave);
+}
+
+[data-theme="dark"] .card-dash-trend,
+[data-theme="dark"] .msg-hora,
+[data-theme="dark"] .msg-bubble.digitando,
+[data-theme="dark"] .flashcard-posicao,
+[data-theme="dark"] .chat-input-area input::placeholder {
+    color: var(--texto-fraco);
+}
+
+/* Dentro do balão roxo do usuário, a hora continua clarinha */
+[data-theme="dark"] .msg-usuario .msg-bubble {
+    background: #7b4bb5;
+    color: white;
+}
+
+[data-theme="dark"] .msg-usuario .msg-hora {
+    color: #e8dcf5;
+}
+
+/* ---- Textos e detalhes roxos (mais claros para aparecer no escuro) ---- */
+[data-theme="dark"] .barra-pct,
+[data-theme="dark"] .btn-revisar,
+[data-theme="dark"] .msg-bubble strong,
+[data-theme="dark"] .chat-sugestoes button,
+[data-theme="dark"] .placar-sabia,
+[data-theme="dark"] .filtro-fc:hover,
+[data-theme="dark"] .btn-secundario {
+    color: var(--roxo-texto);
+}
+
+[data-theme="dark"] .topo-dash .saudacao h1 span,
+[data-theme="dark"] .topo-dash .saudacao p strong,
+[data-theme="dark"] .topo-dash .data i,
+[data-theme="dark"] .barra-materia span:last-child,
+[data-theme="dark"] .msg-ia i,
+[data-theme="dark"] .questao-contador,
+[data-theme="dark"] .chat-header-info div .online {
+    color: var(--roxo-claro);
+}
+
+[data-theme="dark"] .card-dash-trend.positivo,
+[data-theme="dark"] .meta-semanal {
+    color: var(--cor-positiva);
+}
+
+[data-theme="dark"] .card-dash-trend.negativo,
+[data-theme="dark"] .placar-revisar {
+    color: var(--rosa-texto);
+}
+
+[data-theme="dark"] .btn-revisar,
+[data-theme="dark"] .btn-secundario {
+    border-color: var(--roxo-claro);
+}
+
+[data-theme="dark"] .btn-revisar:hover,
+[data-theme="dark"] .chat-sugestoes button:hover {
+    background: #8e5cc7;
+    border-color: #8e5cc7;
+    color: white;
+}
+
+/* ---- Etiquetas e fundos coloridos ---- */
+[data-theme="dark"] .barra-materia span:last-child,
+[data-theme="dark"] .flashcard-materia {
+    background: var(--roxo-fundo);
+}
+
+/* ---- Revisar hoje ---- */
+[data-theme="dark"] .revisar-painel {
+    background: linear-gradient(135deg, var(--superficie) 0%, #2a1d42 100%);
+    border-color: #3f3160;
+    box-shadow: var(--sombra);
+}
+
+[data-theme="dark"] .revisar-card {
+    background: var(--superficie-2);
+    border-color: var(--borda);
+    border-top-color: var(--cor-materia, #8e5cc7);
+    box-shadow: none;
+}
+
+[data-theme="dark"] .revisar-card:hover {
+    box-shadow: var(--sombra-forte);
+}
+
+/* Algumas cores de matéria são escuras: no modo escuro o ícone fica mais claro */
+[data-theme="dark"] .revisar-card-icone {
+    color: color-mix(in srgb, var(--cor-materia, #8e5cc7) 55%, white);
+    background: color-mix(in srgb, var(--cor-materia, #8e5cc7) 28%, var(--superficie-2));
+}
+
+[data-theme="dark"] .revisar-card-nome,
+[data-theme="dark"] .revisar-vazio strong {
+    color: var(--texto);
+}
+
+[data-theme="dark"] .revisar-card-area,
+[data-theme="dark"] .revisar-vazio p {
+    color: var(--texto-suave);
+}
+
+[data-theme="dark"] .revisar-card-erros .erro-simulado {
+    background: var(--roxo-fundo);
+    color: var(--roxo-texto);
+}
+
+[data-theme="dark"] .revisar-card-erros .erro-flashcard {
+    background: var(--rosa-fundo);
+    color: var(--rosa-texto);
+}
+
+[data-theme="dark"] .revisar-btn {
+    border-color: var(--borda-forte);
+    color: var(--roxo-texto);
+}
+
+[data-theme="dark"] .revisar-btn:hover {
+    border-color: var(--roxo-claro);
+    background: rgba(157, 78, 221, 0.15);
+}
+
+[data-theme="dark"] .revisar-btn-principal,
+[data-theme="dark"] .revisar-btn-principal:hover {
+    border-color: transparent;
+    background: linear-gradient(90deg, #9d4edd, #6f42a8);
+    color: white;
+}
+
+[data-theme="dark"] .revisar-vazio {
+    border-color: var(--borda-forte);
+    background: rgba(157, 78, 221, 0.08);
+}
+
+[data-theme="dark"] .revisar-vazio > i {
+    color: var(--roxo-claro);
+}
+
+/* ---- Barras e círculo de progresso ---- */
+[data-theme="dark"] .barra-bg,
+[data-theme="dark"] .card-dash-meta,
+[data-theme="dark"] .flashcard-progresso {
+    background: var(--trilho);
+}
+
+[data-theme="dark"] .circulo-desempenho circle:first-of-type {
+    stroke: var(--trilho);
+}
+
+/* ---- Flashcards ---- */
+[data-theme="dark"] .flashcard-face {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="dark"] .flashcard-card:hover .flashcard-face,
+[data-theme="dark"] .flashcard-card:focus-visible .flashcard-face {
+    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .flashcard-frente .flashcard-materia,
+[data-theme="dark"] .flashcard-verso .flashcard-materia {
+    background: rgba(255, 255, 255, 0.18);
+    color: white;
+}
+
+[data-theme="dark"] .btn-nao-sei {
+    background: var(--rosa-fundo);
+    color: var(--rosa-texto);
+}
+
+[data-theme="dark"] .btn-sei {
+    background: var(--roxo-fundo);
+    color: var(--roxo-texto);
+}
+
+[data-theme="dark"] .btn-nao-sei:hover:not(:disabled),
+[data-theme="dark"] .btn-sei:hover:not(:disabled) {
+    color: white;
+}
+
+[data-theme="dark"] .flashcard-avaliacao kbd {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="dark"] .flashcard-fim {
+    box-shadow: var(--sombra);
+}
+
+/* ---- Simulado ---- */
+[data-theme="dark"] .alternativa {
+    border-color: var(--borda);
+}
+
+[data-theme="dark"] .alternativa:not(.correta):not(.errada):hover {
+    background: rgba(157, 78, 221, 0.12);
+    border-color: var(--borda-forte);
+}
+
+[data-theme="dark"] .alternativa.correta {
+    background: rgba(39, 174, 96, 0.16);
+    border-color: #27ae60;
+}
+
+[data-theme="dark"] .alternativa.errada {
+    background: rgba(231, 76, 60, 0.16);
+    border-color: #e74c3c;
+}
+
+[data-theme="dark"] .questao-feedback.acerto {
+    color: #5fd38d;
+}
+
+[data-theme="dark"] .questao-feedback.erro {
+    color: #ff8a7a;
+}
+
+/* ===============================================
+   MATÉRIAS E GUIAS (materias.css)
+   =============================================== */
+[data-theme="dark"] .materias-container {
+    --guia-tinta: var(--texto);
+    --guia-suave: var(--texto-suave);
+    --guia-borda: var(--borda);
+    --guia-roxo: #8e5cc7;
+    --guia-roxo-escuro: var(--roxo-texto);
+    --guia-laranja: var(--roxo-claro);
+    --guia-laranja-fundo: rgba(157, 78, 221, 0.15);
+    --guia-laranja-borda: #4a3a6a;
+}
+
+[data-theme="dark"] .materia-icone {
+    background: color-mix(in srgb, var(--cor-materia) 22%, var(--superficie));
+}
+
+[data-theme="dark"] .guia-perguntar {
+    color: white;
+}
+
+[data-theme="dark"] .guia-perguntar:hover {
+    background: #6f42a8;
+}
+
+[data-theme="dark"] .guia-conceito {
+    background: #251c37;
+}
+
+[data-theme="dark"] .guia-exemplo {
+    background: rgba(157, 78, 221, 0.12);
+    border-color: #4a3a6a;
+}
+
+[data-theme="dark"] .guia-exemplo > p,
+[data-theme="dark"] .guia-atencao p {
+    color: var(--texto-suave);
+}
+
+[data-theme="dark"] .guia-passos li span {
+    background: #3a2c58;
+}
+
+[data-theme="dark"] .guia-resultado {
+    border-top-color: #4a3a6a;
+}
+
+/* Diagramas: ficam num "quadro" claro, porque os desenhos usam cores claras e texto escuro */
+[data-theme="dark"] .guia-diagrama-imagem {
+    background: #f7f3fc;
+}
